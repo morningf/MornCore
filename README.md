@@ -1,2 +1,4 @@
 # MornCore
-基于.net core 2.0的WebServices服务框架
+基于 .net core 2.0的web service服务框架。
+
+此框架主要包括两个部分Server和Client，分别对应MornServer和MornClient两个类，其中MornServer是个静态类，在一个WebApplication中只允许一个Server存在，而Client可以根据需求在一个应用中创建多个。Client可以发送协议并从Server接收结果。
