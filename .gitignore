@@ -1,0 +1,16 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+/.vs
+/MornServerDemoB/obj
+/MornServerDemoA/obj
+/MornCore/obj
+/MornCore/bin/Debug/netcoreapp2.0
+/MornClientDemo/obj
+*.suo
+/MornClientDemo/bin/Debug/netcoreapp2.0
+/MornServerDemoA/bin/Debug/netcoreapp2.0
+/MornServerDemoB/bin/Debug/netcoreapp2.0
+/ProtocolDemo/bin/Debug/netcoreapp2.0
+/ProtocolDemo/obj
