@@ -35,7 +35,7 @@ namespace MornCore
                 txtParams.Add(MornConstants.APP_KEY, AppKey);
                 // 添加签名参数
                 if (!string.IsNullOrEmpty(AppSecret))
-                    txtParams.Add(MornConstants.SIGN, Util.SignRequestByMd5Method(txtParams, AppSecret));
+                    txtParams.Add(MornConstants.SIGN, Security.Signature.SignRequestByMd5Method(txtParams, AppSecret));
             }
  
             try
