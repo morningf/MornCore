@@ -75,6 +75,13 @@ namespace MornCore
         /// </summary>
         public string Context { get; private set; }
 
+        public IDictionary<string, string> GetTextParamsWithoutSign()
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>(_textParams);
+            dic.Remove(MornConstants.SIGN);
+            return dic;
+        }
+
         public static MornRequestData Create(HttpContext context)
         {
             MornRequestData data = new MornRequestData();
