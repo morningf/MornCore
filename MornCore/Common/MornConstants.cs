@@ -12,8 +12,8 @@ namespace MornCore
         public static readonly string METHOD = "Method";
         public static readonly string TIMESTAMP = "Timestamp";
         public static readonly string DATA = "Data";
-        public static readonly string ERROR_CODE = "ErrCode";
-        public static readonly string ERROR_MESSAGE = "ErrMsg";
+        public static readonly string ERROR_CODE = "ErrorCode";
+        public static readonly string ERROR_MESSAGE = "ErrorMessage";
         #endregion
 
         #region 格式化字符串

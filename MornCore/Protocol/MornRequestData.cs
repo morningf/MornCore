@@ -74,6 +74,7 @@ namespace MornCore
         /// 原始内容
         /// </summary>
         public string Context { get; private set; }
+        public IServiceProvider RequestServices { get; private set; }
 
         public IDictionary<string, string> GetTextParamsWithoutSign()
         {
@@ -85,6 +86,7 @@ namespace MornCore
         public static MornRequestData Create(HttpContext context)
         {
             MornRequestData data = new MornRequestData();
+            data.RequestServices = context.RequestServices;
             var request = context.Request;
 
             //准备内容元素

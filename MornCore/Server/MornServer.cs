@@ -80,15 +80,17 @@ namespace MornCore
                 }
             }
         }
-
         /// <summary>
-        /// 注册验证接口
+        /// 已经注册的方法名
         /// </summary>
-        /// <param name="protocolDataVerifier"></param>
-        public static void RegisterProtocolDataVerifier(IProtocolDataVerifiable protocolDataVerifier)
+        public static IEnumerable<string> MethodNameCollection
         {
-            MornService.ProtocolDataVerifier = protocolDataVerifier;
+            get
+            {
+                return MornService.ProtocolHandlerNameCollection;
+            }
         }
+
         /// <summary>
         /// 注册远程处理接口
         /// </summary>
@@ -128,7 +130,7 @@ namespace MornCore
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>
         /// <param name="localFunc"></param>
-        public static void RegisterLocalMethodHandler<TRequest, TResponse>(Func<TRequest, TResponse> localFunc)
+        public static void RegisterLocalMethodHandler<TRequest, TResponse>(Func<TRequest, IServiceProvider, TResponse> localFunc)
             where TRequest : MornRequest<TResponse>
             where TResponse : MornResponse
         {

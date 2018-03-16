@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace MornCore
 {
     static class MornService
     {
-        static Dictionary<string, IProtocolHandler> _protocolHandlerMap = new Dictionary<string, IProtocolHandler>();
+        static ConcurrentDictionary<string, IProtocolHandler> _protocolHandlerMap = new ConcurrentDictionary<string, IProtocolHandler>();
         static IProtocolGiveName _protocolNameMaker = new DefaultProtocolNameMaker();
 
         public static IProtocolDataVerifiable ProtocolDataVerifier { get; set; }
@@ -16,6 +17,13 @@ namespace MornCore
         {
             get => _protocolNameMaker;
             set => _protocolNameMaker = value ?? throw new MornException(MornErrorType.MornException, "不能将协议命名接口设置为空");
+        }
+        public static IEnumerable<string> ProtocolHandlerNameCollection
+        {
+            get
+            {
+                return _protocolHandlerMap.Keys;
+            }
         }
 
         public static async Task ProcessHttpContextAsync(HttpContext context)
@@ -38,12 +46,10 @@ namespace MornCore
 
         public static void RegisterProtocolHandler(string name, IProtocolHandler handler)
         {
-            if (_protocolHandlerMap.ContainsKey(name))
+            if (!_protocolHandlerMap.TryAdd(name, handler))
             {
                 throw new MornException(MornErrorType.MornException, "已经注册过同名的协议处理接口");
             }
-
-            _protocolHandlerMap[name] = handler;
         }
 
         static string GetResponseString(HttpContext context)
