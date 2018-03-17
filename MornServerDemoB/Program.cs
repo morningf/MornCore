@@ -28,7 +28,7 @@ namespace MornServerDemoB
                 .UseStartup<Startup>()
                 .Build();
 
-        public static AdditionCalculationResponse ProcessAdditionCalculation(AdditionCalculationRequest request)
+        public static AdditionCalculationResponse ProcessAdditionCalculation(AdditionCalculationRequest request, IServiceProvider service)
         {
             var response = new AdditionCalculationResponse
             {
