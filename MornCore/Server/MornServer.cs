@@ -107,8 +107,10 @@ namespace MornCore
         /// <typeparam name="TResponse"></typeparam>
         /// <param name="url"></param>
         public static void RegisterRemoteMethodHandler<TRequest, TResponse>(string url)
+            where TRequest : MornRequest<TResponse>
+            where TResponse : MornResponse
         {
-            var name = MornService.ProtocolNameMaker.GiveName(typeof(TRequest));
+            var name = Activator.CreateInstance<TRequest>().GetApiName();
             RegisterRemoteMethodHandler(name, url);
         }
         /// <summary>
@@ -121,7 +123,7 @@ namespace MornCore
             where TRequest : MornRequest<TResponse>
             where TResponse : MornResponse
         {
-            var name = MornService.ProtocolNameMaker.GiveName(typeof(TRequest));
+            var name = Activator.CreateInstance<TRequest>().GetApiName();
             RegisterProtocolHandler(name, handler);
         }
         /// <summary>

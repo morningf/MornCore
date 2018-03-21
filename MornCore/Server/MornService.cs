@@ -10,14 +10,9 @@ namespace MornCore
     static class MornService
     {
         static ConcurrentDictionary<string, IProtocolHandler> _protocolHandlerMap = new ConcurrentDictionary<string, IProtocolHandler>();
-        static IProtocolGiveName _protocolNameMaker = new DefaultProtocolNameMaker();
 
         public static IProtocolDataVerifiable ProtocolDataVerifier { get; set; }
-        public static IProtocolGiveName ProtocolNameMaker
-        {
-            get => _protocolNameMaker;
-            set => _protocolNameMaker = value ?? throw new MornException(MornErrorType.MornException, "不能将协议命名接口设置为空");
-        }
+
         public static IEnumerable<string> ProtocolHandlerNameCollection
         {
             get

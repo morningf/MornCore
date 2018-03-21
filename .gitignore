@@ -15,3 +15,7 @@
 /ProtocolDemo/bin/Debug/netcoreapp2.0
 /ProtocolDemo/obj
 /MornCore/bin/Debug
+/MornCore/bin/Release/netcoreapp2.0
+/MornCore.Net45/bin/Debug
+/MornCore.Net45/obj/Debug
+/packages/Newtonsoft.Json.10.0.3
