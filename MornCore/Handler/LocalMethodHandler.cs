@@ -20,7 +20,10 @@ namespace MornCore
         {
             var request = JsonConvert.DeserializeObject<TRequest>(data.Data);
             var response = _localFunc.Invoke(request, data.RequestServices);
-            return JsonConvert.SerializeObject(response);
+
+            var timeFormat = new Newtonsoft.Json.Converters.IsoDateTimeConverter();
+            timeFormat.DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            return JsonConvert.SerializeObject(response, Formatting.Indented, timeFormat);
         }
     }
 }
